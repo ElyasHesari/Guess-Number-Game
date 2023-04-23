@@ -15,26 +15,27 @@ let resetButton;
 function checkGuess() {
     const userGuess = Number(guessField.value);
     if (guessCount === 1) {
-      guesses.textContent = 'Previous guesses: ';
+      guesses.textContent = 'اعدادی که حدس زده اید: ';
     }
     guesses.textContent += `${userGuess} `;
   
     if (userGuess === randomNumber) {
-      lastResult.textContent = 'Congratulations! You got it right!';
-      lastResult.style.backgroundColor = 'green';
+      lastResult.textContent = 'تبریک! شما برنده شده اید';
+      lastResult.style.color = 'green';
       lowOrHi.textContent = '';
       setGameOver();
     } else if (guessCount === 10) {
-      lastResult.textContent = '!!!GAME OVER!!!';
+      lastResult.textContent = 'شما باختید!';
       lowOrHi.textContent = '';
       setGameOver();
     } else {
-      lastResult.textContent = 'Wrong!';
-      lastResult.style.backgroundColor = 'red';
+      lastResult.textContent = 'اشتباه!';
+      lastResult.style.color = 'red';
+      lastResult.style.backgroundColor = 'white';
       if (userGuess < randomNumber) {
-        lowOrHi.textContent = 'Last guess was too low!';
+        lowOrHi.textContent = 'آخرین حدس شما کوچکتر از عدد مورد نظر است.';
       } else if (userGuess > randomNumber) {
-        lowOrHi.textContent = 'Last guess was too high!';
+        lowOrHi.textContent = 'آخرین حدس شما بزرگتر از عدد مورد نظر است.';
       }
     }
   
@@ -51,7 +52,7 @@ function setGameOver() {
     guessField.disabled = true;
     guessSubmit.disabled = true;
     resetButton = document.createElement('button');
-    resetButton.textContent = 'Start new game';
+    resetButton.textContent = 'شروع بازی';
     document.body.append(resetButton);
     resetButton.addEventListener('click', resetGame);
   }
